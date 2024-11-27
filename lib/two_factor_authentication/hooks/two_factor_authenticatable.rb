@@ -17,7 +17,7 @@ Warden::Manager.before_logout do |user, auth, _options|
   should_delete = Devise.delete_cookie_on_logout
   
   if user.respond_to?(:delete_cookie_on_logout?)
-    should_delete = user.delete_cookie_on_logout
+    should_delete = user.delete_cookie_on_logout?
   end
 
   auth.cookies.delete TwoFactorAuthentication::REMEMBER_TFA_COOKIE_NAME if should_delete
