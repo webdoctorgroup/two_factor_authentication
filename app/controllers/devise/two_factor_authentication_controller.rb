@@ -24,8 +24,8 @@ class Devise::TwoFactorAuthenticationController < DeviseController
 
   private
 
-  def after_two_factor_success_for(resource)
-    set_remember_two_factor_cookie(resource)
+  def after_two_factor_success_for(resource, options = {})
+    set_remember_two_factor_cookie(resource, options)
 
     warden.session(resource_name)[TwoFactorAuthentication::NEED_AUTHENTICATION] = false
     # For compatability with devise versions below v4.2.0
